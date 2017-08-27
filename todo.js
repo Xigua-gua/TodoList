@@ -4,6 +4,12 @@ var log = function() {
     console.log.apply(console, arguments);
 }
 
+
+// 动态插入div 替换html
+//    首先提交ajax请求 删除div 标签
+//    发送ajax 请求插入自制html
+//
+//
 //  按索引分割字符串
 var substr = function(s,start, end) {
     return s.slice(start, end)

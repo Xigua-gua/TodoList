@@ -10,6 +10,7 @@ var log = function() {
 //    发送ajax 请求插入自制html
 //
 //
+
 //  按索引分割字符串
 var substr = function(s,start, end) {
     return s.slice(start, end)
@@ -91,37 +92,28 @@ var bindEventEnter = function() {
     var todoContainer = $('.todo-container')
     // 按下回车 保存todo
     todoContainer.on('keydown', '.todo-word', function(event){
-        log('按下回车')
+        //log('按下回车')
         if (event.key === 'Enter') {
             event.preventDefault()
             event.target.blur()
             $(event.target).attr('contenteditable', false)
             var index = $(this).closest('.todo-cell').index()
-            // log(index,todoList )
+            //log('失去焦点 this', $(this) )
             todoList[index].task = $(this).html()
             saveTodos()
         }
     })
     //失去焦点  保存todo
     todoContainer.on('blur', '.todo-word', function(event){
-        log('失去焦点')
+        //log('失去焦点 event.target', event.target)
         $(event.target).attr('contenteditable', false)
-        var index = $(this).closest('.todo-cell').index()
-        todoList[index].task = $(this).html()
+        $(this).closest('.todo-cell').task = $(this).html()
         saveTodos()
     })
 }
 
 
-var bindEvents = function() {
-    textNumber()
-    bindAddImg()
-    changeAvatar()
-    bindEventAdd()
-    bindEventButton()
-    bindEventEnter()
 
-}
 
 // 保存todo
 var saveTodos = function() {
@@ -185,10 +177,17 @@ var initTodos = function() {
         var todo = todoList[i]
         insertTodos(todo)
     }
-    log('加载后的todo--->',$(".todo-container"))
+    //log('加载后的todo--->',$(".todo-container"))
 }
 
-
+var bindEvents = function() {
+    textNumber()
+    bindAddImg()
+    changeAvatar()
+    bindEventAdd()
+    bindEventButton()
+    bindEventEnter()
+}
 
 var result
 // 创建todo列表
@@ -203,13 +202,6 @@ var __main = function() {
 }
  __main()
 /*
-
-
-
-
-
-
-
 
 
 
